@@ -14,7 +14,7 @@ export default function Navbar() {
     }, []);
 
     const menuItems = [
-        { name: "Inicio", href: "/" },
+        { name: "Inicio", href: "/" }, // Link verificado a raiz
         { name: "Nosotros", href: "/nosotros" },
         { name: "Sustentabilidad", href: "/sustentabilidad" },
         { name: "Productos", href: "/productos" },
