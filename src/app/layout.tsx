@@ -66,7 +66,23 @@ export default function ApimielLayout({
         },
         "url": "https://apimiel.cl",
         "priceRange": "$$",
-        "areaServed": "Chile"
+        "areaServed": "Chile",
+        "publisher": {
+            "@type": "Organization",
+            "name": "HojaCero",
+            "url": "https://hojacero.cl",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://hojacero.cl/logo.png"
+            },
+            "email": "contacto@hojacero.cl"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "HojaCero",
+            "url": "https://hojacero.cl",
+            "email": "contacto@hojacero.cl"
+        }
     };
 
     return (
