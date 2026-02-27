@@ -1,0 +1,11 @@
+{
+  "client": "apimiel",
+  "exportedAt": "2026-01-25T23:04:53.893Z",
+  "version": "3.0.0",
+  "stats": {
+    "filesCount": 13,
+    "assetsCount": 4,
+    "dependencies": 4,
+    "devDependencies": 7
+  }
+}
