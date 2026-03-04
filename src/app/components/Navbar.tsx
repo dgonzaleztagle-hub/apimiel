@@ -17,6 +17,8 @@ export default function Navbar() {
         { name: "Inicio", href: "/" },
         { name: "Nosotros", href: "/nosotros" },
         { name: "Sustentabilidad", href: "/sustentabilidad" },
+        { name: "Usos & Beneficios", href: "/usos-y-beneficios" },
+        { name: "Historia", href: "/historia" },
         { name: "Productos", href: "/productos" },
         { name: "Galería", href: "/galeria" }
     ];

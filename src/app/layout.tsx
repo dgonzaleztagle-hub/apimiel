@@ -101,10 +101,11 @@ export default function ApimielLayout({
     };
 
     return (
-        <div className={`${playfair.variable} ${inter.variable} font-sans bg-[#1A1A1A] text-[#FDF5E6] antialiased selection:bg-[#D4AF37] selection:text-[#1A1A1A]`}>
-            {/* Kill Switch - Sistema de Retención HojaCero */}
-            <script dangerouslySetInnerHTML={{
-                __html: `
+        <html lang="es">
+            <body className={`${playfair.variable} ${inter.variable} font-sans bg-[#1A1A1A] text-[#FDF5E6] antialiased selection:bg-[#D4AF37] selection:text-[#1A1A1A]`}>
+                {/* Kill Switch - Sistema de Retención HojaCero */}
+                <script dangerouslySetInnerHTML={{
+                    __html: `
                 (async function() {
                 const SITE_ID = '2f494d0e-55e3-4ba0-9e5a-167529eaa8ce';
                 const API = 'https://vcxfdihsyehomqfdzzjf.supabase.co/rest/v1/site_status';
@@ -120,17 +121,18 @@ export default function ApimielLayout({
                 })();
             `}} />
 
-            {/* JSON-LD Injection */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
+                {/* JSON-LD Injection */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                />
 
-            <Navbar />
-            <div className="relative z-10">
-                {children}
-            </div>
-            <Footer />
-        </div>
+                <Navbar />
+                <div className="relative z-10">
+                    {children}
+                </div>
+                <Footer />
+            </body>
+        </html>
     );
 }
