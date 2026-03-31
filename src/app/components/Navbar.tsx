@@ -6,12 +6,21 @@ import { useState, useEffect } from "react";
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 50);
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    useEffect(() => {
+        document.body.style.overflow = isOpen ? "hidden" : "";
+
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [isOpen]);
 
     const menuItems = [
         { name: "Inicio", href: "/" },
@@ -23,11 +32,9 @@ export default function Navbar() {
         { name: "Galería", href: "/galeria" }
     ];
 
-    const [isOpen, setIsOpen] = useState(false);
-
     return (
         <nav className={`fixed top-0 left-0 w-full z-[999] transition-all duration-500 ${scrolled ? 'bg-[#0A0A0A]/95 backdrop-blur-xl h-20 border-b border-[#D4AF37]/20' : 'h-28 bg-transparent'}`}>
-            <div className="max-w-screen-2xl mx-auto px-6 md:px-16 h-full flex items-center justify-between">
+            <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-10 xl:px-16 h-full flex items-center justify-between gap-4">
 
                 {/* Logo Original - Lado Izquierdo */}
                 <div className="flex-shrink-0">
@@ -35,15 +42,14 @@ export default function Navbar() {
                         <img
                             src="/prospectos/apimiel/assets/logo_original.png"
                             alt="Apimiel"
-                            className="h-10 md:h-14 w-auto object-contain"
+                            className="h-10 md:h-12 xl:h-14 w-auto object-contain"
                         />
                     </Link>
                 </div>
 
                 {/* MENÚS DERECHA - Visibilidad Blindada Sherlock */}
-                <div className="flex items-center space-x-6 lg:space-x-10">
-                    {/* Menú: Siempre visible para debug, luego refinamos breakpoints */}
-                    <div className="flex items-center space-x-6 lg:space-x-8">
+                <div className="flex items-center gap-3 md:gap-4 xl:gap-6">
+                    <div className="hidden xl:flex items-center space-x-4 2xl:space-x-8">
                         {menuItems.map((item) => (
                             <Link
                                 key={item.name}
@@ -61,9 +67,10 @@ export default function Navbar() {
                     <motion.a
                         href="https://apimiel.cl/tienda"
                         target="_blank"
+                        rel="noreferrer"
                         initial="initial"
                         whileHover="hover"
-                        className="relative px-8 py-3 overflow-hidden border border-[#D4AF37] cursor-pointer"
+                        className="hidden md:block relative px-5 lg:px-6 xl:px-8 py-3 overflow-hidden border border-[#D4AF37] cursor-pointer"
                     >
                         <motion.span
                             variants={{
@@ -88,7 +95,9 @@ export default function Navbar() {
                     {/* Hamburguesa: Solo para móviles extremos */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="lg:hidden p-2 text-[#D4AF37] hidden"
+                        aria-expanded={isOpen}
+                        aria-label={isOpen ? "Cerrar menu" : "Abrir menu"}
+                        className="xl:hidden p-2 text-[#D4AF37]"
                     >
                         <div className="w-6 h-4 flex flex-col justify-between items-end">
                             <span className="h-[1px] bg-current w-6" />
@@ -98,13 +107,13 @@ export default function Navbar() {
                 </div>
 
                 {/* Mobile Menu Overlay - Reforzado */}
-                <div className={`fixed inset-0 bg-[#0A0A0A] z-[990] transition-transform duration-500 ease-in-out flex flex-col items-center justify-center space-y-8 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+                <div className={`fixed inset-0 bg-[#0A0A0A] z-[990] transition-transform duration-500 ease-in-out flex flex-col items-center justify-center gap-6 px-6 text-center xl:hidden ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                     {menuItems.map((item) => (
                         <Link
                             key={item.name}
                             href={item.href}
                             onClick={() => setIsOpen(false)}
-                            className="text-2xl uppercase tracking-[0.5em] font-black text-[#FDF5E6] hover:text-[#D4AF37] transition-all"
+                            className="text-lg sm:text-xl uppercase tracking-[0.3em] sm:tracking-[0.45em] font-black text-[#FDF5E6] hover:text-[#D4AF37] transition-all"
                         >
                             {item.name}
                         </Link>
@@ -112,7 +121,8 @@ export default function Navbar() {
                     <a
                         href="https://apimiel.cl/tienda"
                         target="_blank"
-                        className="mt-8 px-12 py-4 bg-[#D4AF37] text-[#1A1A1A] text-xs uppercase tracking-[0.4em] font-black"
+                        rel="noreferrer"
+                        className="mt-4 px-8 sm:px-12 py-4 bg-[#D4AF37] text-[#1A1A1A] text-xs uppercase tracking-[0.35em] font-black"
                     >
                         Tienda Real
                     </a>
